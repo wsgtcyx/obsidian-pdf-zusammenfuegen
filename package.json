@@ -1,0 +1,41 @@
+{
+  "name": "obsidian-pdf-zusammenfuegen",
+  "version": "0.1.0",
+  "description": "Mehrere PDF-Dateien lokal zusammenfügen. Ohne Upload, ohne Anmeldung und ohne Telemetrie.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "test": "pnpm exec tsx --test tests/**/*.test.ts",
+    "package:artifacts": "pnpm build && node scripts/prepare-release.mjs",
+    "check": "pnpm build && pnpm test"
+  },
+  "keywords": [
+    "obsidian",
+    "pdf",
+    "pdf zusammenfügen",
+    "pdf mergen",
+    "pdf kombinieren",
+    "offline"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wsgtcyx/obsidian-pdf-zusammenfuegen.git"
+  },
+  "homepage": "https://github.com/wsgtcyx/obsidian-pdf-zusammenfuegen#readme",
+  "bugs": {
+    "url": "https://github.com/wsgtcyx/obsidian-pdf-zusammenfuegen/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "esbuild": "0.25.5",
+    "obsidian": "latest",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}

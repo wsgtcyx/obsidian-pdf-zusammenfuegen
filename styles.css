@@ -1,0 +1,48 @@
+.pdfzus-merge-modal {
+  --pdfzus-border: var(--background-modifier-border);
+  --pdfzus-hover: var(--background-modifier-hover);
+  --pdfzus-muted: var(--text-muted);
+}
+
+.pdfzus-merge-modal .pdfzus-help-text {
+  margin: 0 0 1rem;
+  color: var(--pdfzus-muted);
+  line-height: 1.5;
+}
+
+.pdfzus-merge-modal .pdfzus-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pdfzus-merge-modal .pdfzus-file-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid var(--pdfzus-border);
+  border-radius: 10px;
+}
+
+.pdfzus-merge-modal .pdfzus-file-row:hover {
+  background: var(--pdfzus-hover);
+}
+
+.pdfzus-merge-modal .pdfzus-file-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.pdfzus-merge-modal .pdfzus-file-path {
+  margin-top: 0.25rem;
+  color: var(--pdfzus-muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.pdfzus-merge-modal .pdfzus-file-actions {
+  display: flex;
+  gap: 0.5rem;
+}

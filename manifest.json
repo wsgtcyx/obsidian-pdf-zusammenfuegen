@@ -1,0 +1,10 @@
+{
+  "id": "pdfzus-merge-pdf",
+  "name": "PDF Zusammenfügen - pdfzus",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.0",
+  "description": "Mehrere PDF-Dateien lokal zusammenfügen. Ohne Upload, ohne Anmeldung und ohne Telemetrie.",
+  "author": "pdfzus",
+  "authorUrl": "https://pdfzus.de/",
+  "isDesktopOnly": true
+}

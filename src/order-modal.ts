@@ -16,7 +16,7 @@ export class OrderPdfModal extends Modal {
     const { contentEl } = this;
     contentEl.addClass("pdfzus-merge-modal");
 
-    new Setting(contentEl).setName("Dateien sortieren").setHeading();
+    new Setting(contentEl).setName("Reihenfolge prüfen").setHeading();
     contentEl.createEl("p", {
       cls: "pdfzus-help-text",
       text: "Prüfen Sie die Reihenfolge vor dem Zusammenfügen. Die erste Datei landet vorne im Ergebnis."

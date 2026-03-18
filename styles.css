@@ -4,6 +4,11 @@
   --pdfzus-muted: var(--text-muted);
 }
 
+.pdfzus-file-picker-input {
+  position: fixed;
+  left: -9999px;
+}
+
 .pdfzus-merge-modal .pdfzus-help-text {
   margin: 0 0 1rem;
   color: var(--pdfzus-muted);

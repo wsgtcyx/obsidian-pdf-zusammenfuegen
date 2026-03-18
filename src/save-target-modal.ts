@@ -16,7 +16,7 @@ export class SaveTargetModal extends Modal {
     const { contentEl } = this;
     contentEl.addClass("pdfzus-merge-modal");
 
-    new Setting(contentEl).setName("Zielpfad festlegen").setHeading();
+    new Setting(contentEl).setName("Speicherort wählen").setHeading();
     contentEl.createEl("p", {
       cls: "pdfzus-help-text",
       text: "Falls kein nativer Speicherdialog verfügbar ist, können Sie den Zielpfad hier direkt eintragen."

@@ -31,10 +31,10 @@ const saveMergedBytes = async (
 };
 
 export default class PdfZusMergePlugin extends Plugin {
-  async onload(): Promise<void> {
+  onload(): void {
     this.addCommand({
       id: COMMAND_ID,
-      name: "PDF-Dateien zusammenfügen",
+      name: "PDFs zusammenfügen",
       callback: async () => {
         await this.runMergeFlow();
       }

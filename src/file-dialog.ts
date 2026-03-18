@@ -1,22 +1,6 @@
 import { createSuggestedOutputPath } from "./merge-service";
 import { SaveTargetModal } from "./save-target-modal";
 
-type ElectronDialog = {
-  showOpenDialog: (options: {
-    filters: { name: string; extensions: string[] }[];
-    properties: string[];
-    title: string;
-    buttonLabel: string;
-    defaultPath?: string;
-  }) => Promise<{ canceled: boolean; filePaths: string[] }>;
-  showSaveDialog: (options: {
-    filters: { name: string; extensions: string[] }[];
-    title: string;
-    buttonLabel: string;
-    defaultPath?: string;
-  }) => Promise<{ canceled: boolean; filePath?: string }>;
-};
-
 export type SaveTarget =
   | { kind: "path"; path: string }
   | { kind: "handle"; handle: FileSystemFileHandle };
@@ -30,45 +14,13 @@ type SaveFilePickerOptionsLike = {
 };
 
 type BrowserFileWithPath = File & { path?: string };
-type ElectronModuleShape = {
-  dialog?: ElectronDialog;
-  remote?: {
-    dialog?: ElectronDialog;
-  };
-};
-
-const getElectronDialog = (): ElectronDialog | null => {
-  try {
-    const electron = require("electron") as ElectronModuleShape;
-    if (electron.remote?.dialog) {
-      return electron.remote.dialog;
-    }
-    if (electron.dialog) {
-      return electron.dialog;
-    }
-  } catch {
-    // Ignore and try the next option.
-  }
-
-  try {
-    const remote = require("@electron/remote") as { dialog?: ElectronDialog };
-    if (remote.dialog) {
-      return remote.dialog;
-    }
-  } catch {
-    // Ignore fallback error.
-  }
-
-  return null;
-};
 
 const pickFilesWithInput = async (): Promise<string[]> => {
   const input = document.createElement("input");
   input.type = "file";
   input.multiple = true;
   input.accept = ".pdf,application/pdf";
-  input.style.position = "fixed";
-  input.style.left = "-9999px";
+  input.addClass("pdfzus-file-picker-input");
   document.body.appendChild(input);
 
   const selection = await new Promise<string[]>((resolve) => {
@@ -90,17 +42,6 @@ const pickFilesWithInput = async (): Promise<string[]> => {
 };
 
 export const pickPdfFiles = async (): Promise<string[]> => {
-  const dialog = getElectronDialog();
-  if (dialog) {
-    const result = await dialog.showOpenDialog({
-      title: "PDF-Dateien auswählen",
-      buttonLabel: "Öffnen",
-      filters: [{ name: "PDF-Dateien", extensions: ["pdf"] }],
-      properties: ["openFile", "multiSelections"]
-    });
-    return result.canceled ? [] : result.filePaths;
-  }
-
   return pickFilesWithInput();
 };
 
@@ -109,19 +50,6 @@ export const pickSaveTarget = async (
   inputPaths: string[]
 ): Promise<SaveTarget | null> => {
   const defaultPath = createSuggestedOutputPath(inputPaths);
-  const dialog = getElectronDialog();
-
-  if (dialog) {
-    const result = await dialog.showSaveDialog({
-      title: "Zusammengeführte PDF speichern",
-      buttonLabel: "Speichern",
-      defaultPath,
-      filters: [{ name: "PDF-Dateien", extensions: ["pdf"] }]
-    });
-    if (!result.canceled && result.filePath) {
-      return { kind: "path", path: result.filePath };
-    }
-  }
 
   if ("showSaveFilePicker" in window) {
     try {

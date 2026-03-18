@@ -34,7 +34,7 @@ export default class PdfZusMergePlugin extends Plugin {
   onload(): void {
     this.addCommand({
       id: COMMAND_ID,
-      name: "PDFs zusammenfügen",
+      name: "Zusammenführen",
       callback: async () => {
         await this.runMergeFlow();
       }

@@ -19,7 +19,7 @@ export class SaveTargetModal extends Modal {
     new Setting(contentEl).setName("Speicherort wählen").setHeading();
     contentEl.createEl("p", {
       cls: "pdfzus-help-text",
-      text: "Falls kein nativer Speicherdialog verfügbar ist, können Sie hier direkt eingeben, wo die Datei gespeichert werden soll."
+      text: "Bitte hier eingeben, wo gespeichert werden soll."
     });
 
     const pathSetting = new Setting(contentEl).setName("Dateipfad");

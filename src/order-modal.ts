@@ -19,7 +19,7 @@ export class OrderPdfModal extends Modal {
     new Setting(contentEl).setName("Reihenfolge prüfen").setHeading();
     contentEl.createEl("p", {
       cls: "pdfzus-help-text",
-      text: "Prüfen Sie die Reihenfolge, bevor Sie alles zusammenführen. Die erste Datei landet vorne im Ergebnis."
+      text: "Bitte zuerst prüfen, ob alles in der richtigen reihenfolge ist."
     });
 
     const listEl = contentEl.createDiv({ cls: "pdfzus-file-list" });
